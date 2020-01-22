@@ -47,6 +47,18 @@ button {
     border: 2px solid gray
 }
 
+.easy {
+    background-color: lime;
+}
+
+.medium {
+    background-color: mediumblue;
+}
+
+.hard {
+    background-color: red;
+}
+
 button:hover {
     background-color: darkred;
     color: white;
@@ -67,7 +79,15 @@ button:hover {
     display: block;
 }
 
-.hintOne{
+.hint1{
+    cursor: pointer;
+}
+
+.hint2{
+    cursor: pointer;
+}
+
+.hint3{
     cursor: pointer;
 }
 

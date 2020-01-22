@@ -113,8 +113,8 @@ function cellClicked(i, j) {
 
     if (gGame.isOn === true) {
         if (gHint === true) {
-            hint(i, j)
-            setTimeout(hint.bind(null, i, j), 3000);
+            hintDisplay(i, j)
+            setTimeout(hintDisplay.bind(null, i, j), 3000);
 
         } else {
             gFirstTimeClicked++
@@ -134,25 +134,15 @@ function cellClicked(i, j) {
             currCell.hintShown = true
 
             renderBoard(gBoard)
-            //isWin()
         }
+        isWin()
     }
 }
-
-function isWin() {
-    /*
-     for (var i = 0; i < gBoard.length; i++) {
-         for (var j = 0; j < gBoard[i].length; j++) {
-             var currCell = gBoard[i][j]
-             isAllMinesMakred()
-             continue;
-         }
-         if (currCell.isMine === false && currCell.isShown === true) {
- debugger
-         }
-     }
- */
+/*
+function isWin(params) {
+    
 }
+*/
 
 function isAllMinesMakred() {
     for (var i = 0; i < gBoard.length; i++) {
@@ -191,12 +181,13 @@ function restart() {
     gFirstTimeClicked = 0
 }
 
-function showHint(cellI, cellJ) {
+function showHint(currHint) {
     gHint = true
     openModal()
+    currHint.style.display = 'none'
 }
 
-function hint(cellI, cellJ) {
+function hintDisplay(cellI, cellJ) {
 
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= gBoard.length) continue;
@@ -209,9 +200,6 @@ function hint(cellI, cellJ) {
     renderBoard(gBoard)
     gHint = false
 }
-
-
-
 
 function openModal() {
     var modal = document.querySelector('.modal')
