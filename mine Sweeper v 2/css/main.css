@@ -1,0 +1,89 @@
+body {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+}
+
+h1 {
+    color: coral;
+}
+
+.board td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+
+.safe {
+    background-color: lightgoldenrodyellow;
+}
+
+.bomb {
+    background-color: red;
+}
+
+.hidden {
+    background-color: rgb(236, 236, 213);
+}
+
+.smiley {
+    display: inline-block; 
+    padding: 10px;
+    cursor: pointer;
+}
+
+button {
+    background-color: lightsalmon;
+    font-size: 20px;
+    padding: 20px 60px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 10px;
+    transition: 0.5s;
+    border: 2px solid gray
+}
+
+button:hover {
+    background-color: darkred;
+    color: white;
+}
+
+.timer {
+    color: lightsalmon;
+    font-size: 30px;
+    display: inline-block;
+    position: relative;
+    left: 520px;
+    width: 50px;
+    height: 40px;
+}
+
+.hint {
+    color: lightsalmon;
+    display: block;
+}
+
+.hintOne{
+    cursor: pointer;
+}
+
+
+.modal {
+    opacity: 70%;
+    background-color: lightsalmon;
+    display: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -336px;
+    top: 100px;
+    padding: 30px;
+    border-radius: 25px;
+  }
+  
+  .modal button {
+    float: right;
+  }

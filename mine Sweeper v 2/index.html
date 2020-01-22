@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mine Sweeper</title>
+    <link rel="stylesheet" href="css\main.css">
+</head>
+
+<body onload="initGame()">
+    <div class="timer">00:00:00 </div>
+    <h1>MINE Sweeper</h1>
+
+
+    <div class="smiley" onclick="restart()">
+        <img src="img\smiley win.jpg" alt="Smiley face" height="40" width="50">
+    </div>
+
+<p class="modal">please press on a cell</p>
+
+    <div class="hint">HINTS:
+        <img onclick="showHint()" class="hintOne" src="img\hint.png" height="25" width="25">
+        <img onclick="showHint()" class="HintTwo" src="img\hint.png" height="25" width="25">
+        <img onclick="showHint()" class="HintThree" src="img\hint.png" height="25" width="25">
+    </div>
+
+    <table border="1">
+        <tbody class="board">
+
+        </tbody>
+    </table>
+    <button onclick="difficulty(this)"> easy</button> <button onclick="difficulty(this)">medium</button><button
+        onclick="difficulty(this)">hard</button>
+
+
+    <script src="js\main.js"></script>
+</body>
+
+</html>
