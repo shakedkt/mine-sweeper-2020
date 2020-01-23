@@ -11,28 +11,37 @@
 
 <body onload="initGame()">
     <div class="timer">00:00:00 </div>
-    <h1>MINE Sweeper</h1>
+<div class="switch-light" onclick="changeLight()">dark mode</div>
+    <h1>Mine Sweeper</h1>
 
 
     <div class="smiley" onclick="restart()">
-        <img src="img\smiley win.jpg" alt="Smiley face" height="40" width="50">
+        🙂
     </div>
 
-<p class="modal">please press on a cell</p>
-
+    <p class="modal">please press on a cell</p>
+<div class="info">
     <div class="hint">HINTS:
         <img onclick="showHint(this)" class="hint1" src="img\hint.png" height="25" width="25">
         <img onclick="showHint(this)" class="hint2" src="img\hint.png" height="25" width="25">
         <img onclick="showHint(this)" class="hint3" src="img\hint.png" height="25" width="25">
     </div>
+    <div class="lives"> LIVES:
+        <p>❤️</p> <p>❤️</p> <p>❤️</p>
+    </div>
 
+<div class="best">best time: <span> </span>
+  </div>
+
+  <div><button class="safe-Button" onclick="safeClick()">you got 3 safe click left</button> </div>
+</div>
     <table border="1">
         <tbody class="board">
 
         </tbody>
     </table>
-    <button class="easy" onclick="difficulty(this)"> easy</button> <button class="medium" onclick="difficulty(this)">medium</button><button
-      class="hard"  onclick="difficulty(this)">hard</button>
+    <button class="easy" onclick="difficulty(this)"> easy</button> <button class="medium"
+        onclick="difficulty(this)">medium</button><button class="hard" onclick="difficulty(this)">hard</button>
 
 
     <script src="js\main.js"></script>

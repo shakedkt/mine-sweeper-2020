@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    background-color: lightgray;
 }
 
 table {
@@ -8,6 +9,18 @@ table {
 
 h1 {
     color: coral;
+}
+
+.switch-light {
+    background-color: rgb(97, 97, 97);
+    font-size: 10px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 10px;
+    transition: 0.5s;
+    border: 2px solid gray   
 }
 
 .board td {
@@ -30,9 +43,10 @@ h1 {
 }
 
 .smiley {
-    display: inline-block; 
+    display: inline-block;
     padding: 10px;
     cursor: pointer;
+    font-size: 30px;
 }
 
 button {
@@ -52,7 +66,7 @@ button {
 }
 
 .medium {
-    background-color: mediumblue;
+    background-color: rgb(205, 140, 0);
 }
 
 .hard {
@@ -60,7 +74,7 @@ button {
 }
 
 button:hover {
-    background-color: darkred;
+    background-color: rgb(185, 67, 67);
     color: white;
 }
 
@@ -69,25 +83,25 @@ button:hover {
     font-size: 30px;
     display: inline-block;
     position: relative;
-    left: 520px;
+    left: 300px;
     width: 50px;
     height: 40px;
 }
 
 .hint {
-    color: lightsalmon;
+    color: rgb(161, 54, 11);
     display: block;
 }
 
-.hint1{
+.hint1 {
     cursor: pointer;
 }
 
-.hint2{
+.hint2 {
     cursor: pointer;
 }
 
-.hint3{
+.hint3 {
     cursor: pointer;
 }
 
@@ -99,11 +113,43 @@ button:hover {
     position: absolute;
     left: 50%;
     margin-left: -336px;
-    top: 100px;
+    top: 90px;
     padding: 30px;
     border-radius: 25px;
-  }
-  
-  .modal button {
+}
+
+.modal button {
     float: right;
-  }
+}
+
+.lives p {
+    display: inline-block;
+}
+
+.lives {
+    color: red;
+}
+
+.best-time {
+    display: inline-block;
+}
+
+.info {
+    position: absolute;
+    bottom: 227px;
+    left: 50px;
+    width: 300px;
+}
+
+
+.safe-Button {
+    background-color: lightsalmon;
+    font-size: 20px;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 10px;
+    transition: 0.5s;
+    border: 2px solid gray   
+}
