@@ -134,7 +134,7 @@ function cellClicked(i, j) {
             gFirstTimeClicked++
             if (gFirstTimeClicked === 1) {
                 startTimer()
-                randomMines(gLevel.MINES)
+                randomMines(i, j, gLevel.MINES)
                 if (currCell.isMine) {
                     currCell.isMine = false
                 }
@@ -187,6 +187,7 @@ function isWin() {
 function openNegs(negs) {
     for (var i = 0; i < negs.length; i++) {
         negs[i].isShown = true
+        negs[i].hintShown = true
     }
 }
 
@@ -209,13 +210,13 @@ function revelAll() {
     }
 }
 
-function randomMines(minesCount) {
+function randomMines(i, j, minesCount) {
     var counter = 0
     while (counter < minesCount) {
         var randomI = getRandomIntInclusive(0, gBoard.length - 1)
         var randomj = getRandomIntInclusive(0, gBoard[randomI].length - 1)
+        if (randomI === i && randomj === j) continue;
         if (gBoard[randomI][randomj].isMine) continue
-
         gBoard[randomI][randomj].isMine = true
         counter++
     }
@@ -233,6 +234,8 @@ function restart() {
     gSafeClickCount = 3
     var smiley = document.querySelector('.smiley')
     smiley.innerText = '🙂'
+    var elSafeClick = document.querySelector('.safe-Button')
+    elSafeClick.innerText = `you have ${gSafeClickCount} safe click left`
 }
 
 function showHint(currHint) {
@@ -329,18 +332,15 @@ function timer(startTime) {
     gTime = seconds
 }
 
-
 function msToTime(s) {
     var ms = s % 1000;
     s = (s - ms) / 1000;
     var secs = s % 60;
     s = (s - secs) / 60;
     var mins = s % 60;
-  
+
     return + mins + ':' + secs + '.' + ms;
-  }
-
-
+}
 
 function resetTimer() {
     document.querySelector('.timer').innerText = '00:00:00'
@@ -349,22 +349,37 @@ function resetTimer() {
 
 function bestScore() {
     if (gLevel.MINES === 3) {
-        if (gTime < localStorage.getItem('easy')) {
+        if (!(localStorage.getItem('easy'))) {
             localStorage.setItem('easy', gTime)
-            document.querySelector('.best').innerText = 'best time:' + localStorage.getItem('easy');
-            return;
+            document.querySelector('.best-time').innerText = 'best time:' + localStorage.getItem('easy');
+        } else {
+            if (gTime < localStorage.getItem('easy')) {
+                localStorage.setItem('easy', gTime)
+                document.querySelector('.best-time').innerText = 'best time:' + localStorage.getItem('easy');
+                return;
+            }
         }
     } else if (gLevel.MINES === 12) {
-        if (gTime < localStorage.getItem('medium')) {
+        if (!(localStorage.getItem('medium'))) {
             localStorage.setItem('medium', gTime)
-            document.querySelector('.best').innerText = 'best time:' + localStorage.getItem('medium');
-            return;
+            document.querySelector('.best-time').innerText = 'best time:' + localStorage.getItem('medium');
+        } else {
+            if (gTime < localStorage.getItem('medium')) {
+                localStorage.setItem('medium', gTime)
+                document.querySelector('.best-time').innerText = 'best time:' + localStorage.getItem('medium');
+                return;
+            }
         }
     } else if (gLevel.MINES === 30) {
-        if (gTime < localStorage.getItem('medium')) {
-            localStorage.setItem('medium', gTime)
-            document.querySelector('.best').innerText = 'best time:' + localStorage.getItem('medium');
-            return;
+        if (!(localStorage.getItem('hard'))) {
+            localStorage.setItem('hard', gTime)
+            document.querySelector('.best-time').innerText = 'best time:' + localStorage.getItem('hard');
+        } else {
+            if (gTime < localStorage.getItem('hard')) {
+                localStorage.setItem('hard', gTime)
+                document.querySelector('.best-time').innerText = 'best time:' + localStorage.getItem('hard');
+                return;
+            }
         }
     }
 }
@@ -377,9 +392,10 @@ function safeClick() {
         if ((cell.isMine === false) && (cell.isShown === false)) {
             cell.isShown = true
             renderBoard(gBoard)
-            gSafeClickCount--
             var elSafeClick = document.querySelector('.safe-Button')
-            elSafeClick.innerText = `you have ${gSafeClickCount} safe click left`
+            elSafeClick.innerText = `you got ${gSafeClickCount - 1} click left`
+            setTimeout(resetCellSafe.bind(null, randomI, randomj), 3000);
+            gSafeClickCount--
         } else {
             safeClick()
         }
@@ -389,13 +405,16 @@ function safeClick() {
         elSafeClick.innerText = 'you have no safe click left'
     }
 }
+function resetCellSafe(i, j) {
+    gBoard[i][j].isShown = false
+    renderBoard(gBoard)
+}
 
 function changeLight() {
-var currColor = document.querySelector('body').style.backgroundColor
-
-if (currColor === 'black') {
-    document.querySelector('body').style.backgroundColor = 'lightgray'
-} else {
-    document.querySelector('body').style.backgroundColor = 'black'
-}
+    var currColor = document.querySelector('body').style.backgroundColor
+    if (currColor === 'black') {
+        document.querySelector('body').style.backgroundColor = 'lightgray'
+    } else {
+        document.querySelector('body').style.backgroundColor = 'black'
+    }
 }
